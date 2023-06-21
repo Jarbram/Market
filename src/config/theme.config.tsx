@@ -26,7 +26,15 @@ const theme = createTheme({
         fontFamily: ThemePalette.FONT_GLOBAL,
     },
     components: {
-        MuiButton: {},
+        MuiButton: {
+            defaultProps: {
+                style:{
+                    textTransform: 'none',
+                    boxShadow: 'none',
+                    borderRadius: '0.5em',
+                }
+            }
+        },
     },            
 });
 
