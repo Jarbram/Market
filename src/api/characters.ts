@@ -9,7 +9,7 @@ export const getCharacters = {
             }
         })
     },
-    getById: function (id: number) {
+    getById: function ({id} : {id: string | undefined}) {
         return instance.get(`${endpoint}/${id}`);
     },
 }
