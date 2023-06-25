@@ -31,15 +31,15 @@ export const CardComponent: React.FC<CardProps> = ({image,name,species,status,id
     }, [itemExits,id])
     
     return (
-        <Card>
+        <Card >
             <CardMedia
                 component="img"
-                height="140"
+                height="200"
                 image={image}
                 alt="green iguana"
             />
             <CardContent>
-                <Typography variant='h4' sx={{mb:1.5}} >{name}</Typography>
+                <Typography variant='h6' sx={{mb:1.5}} >{name}</Typography>
                 <Divider/>
                 <Typography sx={{mt:1.5}}>{species}</Typography>
                 <Typography sx={{mt:1.5}}>{status}</Typography>

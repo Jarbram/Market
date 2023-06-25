@@ -31,7 +31,7 @@ export const HomePage: React.FC = () => {
         <Container sx={{mt:9}} maxWidth="xl">
         <HeaderContainer 
         title='Jarbram' 
-        description='hi everyone, this my first app with typescript'
+        description='Practice with MUI and typescript'
         element={<Button variant='contained' color='primary'>Learn More</Button>}
         />
         {
@@ -41,10 +41,10 @@ export const HomePage: React.FC = () => {
             </Box>
           ) :(
             <>
-            <Grid sx={{my:2}} container spacing={2} direction="row" >
+            <Grid sx={{my:2}} container spacing={3} direction="row" >
               {allCharacters?.map((character) => (
               <Grid key={character.id} item xs={3}>
-                <CardComponent
+                <CardComponent 
                 image={character.image}
                 name={character.name}
                 species={character.species}
