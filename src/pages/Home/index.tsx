@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Card, CircularProgress, Container, Grid, Pagination, Stack } from '@mui/material';
+import { Box, Button,  CircularProgress, Container, Grid, Pagination } from '@mui/material';
 import { CardComponent, HeaderContainer } from '../../components';
 import { getCharacters } from '../../api/characters';
 import { TypeCharacter } from './interface/character.interface';

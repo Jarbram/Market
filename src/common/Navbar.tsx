@@ -1,5 +1,5 @@
 import { ShoppingCartOutlined } from '@mui/icons-material';
-import { AppBar, Badge, Box, Button, Container, Grid, Icon, IconButton, Stack, Toolbar, Typography } from '@mui/material';
+import { AppBar, Badge, Box, Button, Container, Grid,  IconButton, Stack, Toolbar, Typography } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../redux/hooks';

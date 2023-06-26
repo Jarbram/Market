@@ -20,7 +20,7 @@ export const CharacterPage: React.FC = () => {
         .catch((error) => {
             console.log(error);
         })
-    }, []);
+    }, [id]);
     return (
         <Box sx={{width:"100%"}}>
             <Container maxWidth="xl">
