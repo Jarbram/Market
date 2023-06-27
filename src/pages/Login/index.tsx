@@ -9,7 +9,7 @@ type LoginType = {
   password: string
 }
 
-export const LoginPage: React.FC = () => {
+const LoginPage: React.FC = () => {
 const { getSuccess } = UseNotification();
 const formik = useFormik<LoginType>({
   initialValues: {
@@ -77,3 +77,5 @@ const formik = useFormik<LoginType>({
       </Container>
     )
 }
+
+export default LoginPage;
