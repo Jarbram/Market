@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Box,
+  Button,
   Divider,
   Drawer,
   IconButton,
@@ -22,6 +23,22 @@ export const CartComponent: React.FC<CartComponentProps> = ({
 }) => {
   const items = useAppSelector((state) => state.cartReducer);
 
+  const handleCheckout = () => {
+    // Construir el mensaje con el resumen de los productos y el precio total
+    const totalPrice = items.reduce((acc, { price }) => acc + price, 0).toFixed(2);
+    const message = `¡Hola! Estoy interesado en comprar los siguientes productos:%0A%0A`;
+    const productsMessage = items
+      .map(({ name, price }) => `- ${name}: $${price.toFixed(2)}`)
+      .join('%0A');
+    const totalPriceMessage = `%0A%0APrecio total: $${totalPrice}`;
+    const finalMessage = message + productsMessage + totalPriceMessage;
+  
+    // Redirigir al usuario a la página de chat de WhatsApp
+    const url = `https://api.whatsapp.com/send?phone=992487774&text=${finalMessage}`;
+    window.open(url, '_blank');
+  };
+  
+
   return (
     <Drawer anchor={'right'} open={open}>
       <Box sx={{ width: '25em', p: 2 }}>
@@ -37,17 +54,42 @@ export const CartComponent: React.FC<CartComponentProps> = ({
         </Stack>
         <Divider sx={{ my: 1.5 }} />
         {items.length > 0
-          ? items.map(({ id, image, name, info }) => (
+          ? items.map(({ id, image, name, price }) => (
               <HorizontalCardComponent
                 key={id}
                 id={id}
                 image={image}
                 name={name}
-                info={info}
+                price={price}
               />
             ))
           : 'Nada por aqui'}
       </Box>
+      <Divider />
+      <Box sx={{ width: '25em', p: 2 }}>
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+        >
+          <Typography variant="h5">Total</Typography>
+          <Typography variant="h5">
+            $
+            {items
+              .reduce((acc, { price }) => acc + price, 0)
+              .toFixed(2)}
+          </Typography>
+        </Stack>
+      </Box>
+
+      <Button 
+      variant="contained" 
+      fullWidth
+      onClick={handleCheckout}
+      >
+        Checkout
+      </Button>
+
     </Drawer>
   );
 };

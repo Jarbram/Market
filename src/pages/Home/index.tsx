@@ -1,11 +1,11 @@
 import React from 'react';
 import { Box, Button,  CircularProgress, Container, Grid, Pagination } from '@mui/material';
 import { CardComponent, HeaderContainer } from '../../components';
-import { getCharacters } from '../../api/characters';
-import { TypeCharacter } from './interface/character.interface';
+import { getAllProducts } from '../../api/products';
+import { Product } from './interface/product.interface';
 
 export const HomePage: React.FC = () => {
-  const [allCharacters, setAllCharacters] = React.useState<TypeCharacter[] | null > (null)
+  const [allProducts, setAllProducts] = React.useState<Product[] | null > (null)
   const [loading, setLoading] = React.useState<boolean>(true)
   const [page, setPage] = React.useState<number>(1)
   const [count, setCount] = React.useState<number>(1)
@@ -16,10 +16,10 @@ export const HomePage: React.FC = () => {
 
   React.useEffect(() => {
     setLoading(true);
-    getCharacters.getAll({ page })
+    getAllProducts()
       .then((response) => {
-        setCount(response.data.info.pages);
-        setAllCharacters(response.data.results);
+        //setCount(response);
+        setAllProducts(response);
         setTimeout(() => setLoading(false), 1000);
       })
       .catch((error) => {
@@ -42,14 +42,14 @@ export const HomePage: React.FC = () => {
           ) :(
             <>
             <Grid sx={{my:2}} container spacing={3} direction="row" >
-              {allCharacters?.map((character) => (
-              <Grid key={character.id} item xs={3}>
+              {allProducts?.map((product) => (
+              <Grid key={product.id} item xs={3}>
                 <CardComponent 
-                image={character.image}
-                name={character.name}
-                species={character.species}
-                status={character.status}
-                id={character.id}
+                image={product.image}
+                name={product.name}
+                price={product.price}
+                description={product.description}
+                id={product.id}
                 />
               </Grid>
               ))}

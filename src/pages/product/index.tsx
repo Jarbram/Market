@@ -1,20 +1,19 @@
 
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { getCharacters } from '../../api/characters';
-import { ICharacter } from './interface/character.interface';
 import { Box, CircularProgress, Container, Grid, Typography } from '@mui/material';
+import { Product } from './interface/product.interface';
+import { getProductById } from '../../api/products';
 
-const CharacterPage: React.FC = () => {
+const ProductPage: React.FC = () => {
     const { id } = useParams();
     const [loading, setLoading] = React.useState<boolean>(true);
-    const [character, setCharacter] = React.useState <  ICharacter | null  >(null);
+    const [product, setProduct] = React.useState <  Product | null  >(null);
     
     React.useEffect(() => {
-        getCharacters
-        .getById({id})
+        getProductById(id)
         .then((r) => {
-            setCharacter(r.data);
+            setProduct(r || null);
             setLoading(false);
         })
         .catch((error) => {
@@ -33,29 +32,17 @@ const CharacterPage: React.FC = () => {
                         <Grid container columnSpacing={2} sx={{mt:2}}>
                             <Grid item xs={6} >
                                 <Typography variant="h1" sx={{mb:2}}>
-                                    {character!.name}
+                                    {product!.name}
                                 </Typography>
                                 <Typography variant="h3" sx={{mb:2}}>
-                                    {character!.status}
+                                    {product!.price}
                                 </Typography>
                                 <Typography variant="h6" sx={{mb:2}}>
-                                    {character!.species}
-                                </Typography>
-                                <Typography variant="h6" sx={{mb:2}}>
-                                    {character!.gender}
-                                </Typography>
-                                <Typography variant="h6" sx={{mb:2}}>
-                                    {character!.origin.name}
-                                </Typography>
-                                <Typography variant="h6" sx={{mb:2}}>
-                                    {character!.location.name}
-                                </Typography>
-                                <Typography variant="h6" sx={{mb:2}}>
-                                    {character!.episode.length}
+                                    {product!.description}
                                 </Typography>
                             </Grid>
                             <Grid item xs={6}>
-                                <img src={character!.image} alt={character?.name} style={{width:"100%", borderRadius:"0.5em"}} />
+                                <img src={product!.image} alt={product?.name} style={{width:"100%", borderRadius:"0.5em"}} />
                             </Grid>
                         </Grid>
                     )}
@@ -64,4 +51,4 @@ const CharacterPage: React.FC = () => {
     )
 }
 
-export default CharacterPage
+export default ProductPage

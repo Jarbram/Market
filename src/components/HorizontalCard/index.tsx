@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Button,
   Card,
   CardActions,
   CardContent,
@@ -17,14 +18,14 @@ interface CardHorizontalComponentProps {
   id: string | number;
   image: string;
   name: string;
-  info: string;
+  price: number;
 }
 
 export const HorizontalCardComponent: React.FC<CardHorizontalComponentProps> = ({
   id,
   image,
   name,
-  info,
+  price,
 }) => {
   const dispatch = useAppDispatch();
 
@@ -44,7 +45,7 @@ export const HorizontalCardComponent: React.FC<CardHorizontalComponentProps> = (
           <CardContent>
             <Typography variant="h4">{name}</Typography>
             <Divider />
-            <Typography variant="h6">{info}</Typography>
+            <Typography variant="h6">{price}</Typography>
           </CardContent>
         </Grid>
         <Grid item xs={2}>

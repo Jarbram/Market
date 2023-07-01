@@ -9,12 +9,12 @@ import { setItem } from '../../utils/localStorage';
 type CardProps = {
     image: string;
     name: string;
-    species: string;
-    status: string;
-    id : number;
+    description: string;
+    price:number;
+    id : string;
 }
 
-export const CardComponent: React.FC<CardProps> = ({image,name,species,status,id}) => {
+export const CardComponent: React.FC<CardProps> = ({image,name,description,price,id}) => {
     let navigate = useNavigate();
     const dispatch = useAppDispatch();
     const handleAddToCart = () => {
@@ -22,7 +22,7 @@ export const CardComponent: React.FC<CardProps> = ({image,name,species,status,id
             id,
             name,
             image,
-            info: status
+            price,
         }))
     }
     const[disabled,setDisabled] = React.useState(false);
@@ -43,8 +43,8 @@ export const CardComponent: React.FC<CardProps> = ({image,name,species,status,id
             <CardContent>
                 <Typography variant='h6' sx={{mb:1.5}} >{name}</Typography>
                 <Divider/>
-                <Typography sx={{mt:1.5}}>{species}</Typography>
-                <Typography sx={{mt:1.5}}>{status}</Typography>
+                <Typography sx={{mt:1.5}}>{description}</Typography>
+                <Typography sx={{mt:1.5}}>{price}</Typography>
             </CardContent>
             <CardActions>
                 <Button size="small" variant='contained' fullWidth onClick={()=> navigate(`/character/${id}`)}>Learn More</Button>

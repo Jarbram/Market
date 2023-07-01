@@ -6,7 +6,7 @@ interface CartAddState {
     id: string | number;
     image: string;
     name: string;
-    info: string;
+    price: number;
 }
 
 interface CartRemoveState {
