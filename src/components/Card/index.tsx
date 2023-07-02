@@ -23,6 +23,7 @@ export const CardComponent: React.FC<CardProps> = ({image,name,description,price
             name,
             image,
             price,
+            quantity:1
         }))
     }
     const[disabled,setDisabled] = React.useState(false);

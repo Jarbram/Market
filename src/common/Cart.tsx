@@ -24,7 +24,6 @@ export const CartComponent: React.FC<CartComponentProps> = ({
   const items = useAppSelector((state) => state.cartReducer);
 
   const handleCheckout = () => {
-    // Construir el mensaje con el resumen de los productos y el precio total
     const totalPrice = items.reduce((acc, { price }) => acc + price, 0).toFixed(2);
     const message = `¡Hola! Estoy interesado en comprar los siguientes productos:%0A%0A`;
     const productsMessage = items
@@ -32,8 +31,6 @@ export const CartComponent: React.FC<CartComponentProps> = ({
       .join('%0A');
     const totalPriceMessage = `%0A%0APrecio total: $${totalPrice}`;
     const finalMessage = message + productsMessage + totalPriceMessage;
-  
-    // Redirigir al usuario a la página de chat de WhatsApp
     const url = `https://api.whatsapp.com/send?phone=992487774&text=${finalMessage}`;
     window.open(url, '_blank');
   };
@@ -54,13 +51,14 @@ export const CartComponent: React.FC<CartComponentProps> = ({
         </Stack>
         <Divider sx={{ my: 1.5 }} />
         {items.length > 0
-          ? items.map(({ id, image, name, price }) => (
+          ? items.map(({ id, image, name, price,quantity}) => (
               <HorizontalCardComponent
                 key={id}
                 id={id}
                 image={image}
                 name={name}
                 price={price}
+                quantity={quantity}
               />
             ))
           : 'Nada por aqui'}
@@ -76,7 +74,7 @@ export const CartComponent: React.FC<CartComponentProps> = ({
           <Typography variant="h5">
             $
             {items
-              .reduce((acc, { price }) => acc + price, 0)
+              .reduce((acc,{price}) => acc + price, 0)
               .toFixed(2)}
           </Typography>
         </Stack>
