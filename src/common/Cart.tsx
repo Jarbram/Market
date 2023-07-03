@@ -61,7 +61,7 @@ export const CartComponent: React.FC<CartComponentProps> = ({
                 quantity={quantity}
               />
             ))
-          : 'Nada por aqui'}
+          : 'Agrega productos al carrito'}
       </Box>
       <Divider />
       <Box sx={{ width: '25em', p: 2 }}>

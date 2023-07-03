@@ -2,12 +2,11 @@ import { Box, Divider, Grid, Typography } from '@mui/material';
 import React from 'react';
 
 type HeaderProps = {
-    title: string;
     description: string;
     element?: React.ReactNode | null;
 }
 
-export const HeaderContainer: React.FC<HeaderProps> = ({title,description,element}) => {
+export const HeaderContainer: React.FC<HeaderProps> = ({description,element}) => {
     return (
         <div>
         <Box
@@ -20,7 +19,7 @@ export const HeaderContainer: React.FC<HeaderProps> = ({title,description,elemen
             alignItems="center"
             sx={{height: '100%'}}
             >
-                <Grid item xs={5}>
+                <Grid item xl={5}>
                     <Grid 
                     container
                     direction="column"
@@ -29,10 +28,10 @@ export const HeaderContainer: React.FC<HeaderProps> = ({title,description,elemen
                     sx={{height: '100%'}}
                     >
                         <Grid item>
-                            <Typography variant='h2'>{title}</Typography>
-                        </Grid>
-                        <Grid item>
-                            <Typography>{description}</Typography>
+                            <Typography
+                            variant="h6"
+                            sx={{textAlign: 'center', color: 'white'}}
+                            >{description}</Typography>
                         </Grid  >
                         {element !== undefined && <Grid item sx={{mt:4}}>{element}</Grid>}
                     </Grid>

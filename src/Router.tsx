@@ -1,6 +1,6 @@
 import React from 'react';  
 import { Route, Routes } from 'react-router-dom';
-import { HomePage, LoginPage, CharacterPage } from './pages';
+import { HomePage, CharacterPage } from './pages';
 import { RouterLayout } from './common/RouterLayout';
 export const AppRouter: React.FC = () => {
     return(
@@ -9,7 +9,6 @@ export const AppRouter: React.FC = () => {
                 <Route path='/' element={<HomePage/>}/>
                 <Route path='/character/:id' element={<CharacterPage/>}/>
             </Route>
-            <Route path='/login' element={<LoginPage/>}/>
         </Routes>
     )
 }

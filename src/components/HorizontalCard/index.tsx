@@ -44,39 +44,34 @@ export const HorizontalCardComponent: React.FC<CardHorizontalComponentProps> = (
   };
   
   return (
-    <Card sx={{ display: 'flex', my: 2 }}>
+    <Card sx={{ display: 'flex', my: 2, alignItems: 'center' }}>
       <CardMedia
         component="img"
-        sx={{ width: 151 }}
+        sx={{ width: 151, height: 151, objectFit: 'cover', flexShrink: 0, borderRadius: '4px' }}
         image={image}
-        alt="Rick and Morty"
+        alt={name}
       />
-      <Grid container sx={{ mx: 1 }}>
-        <Grid item xs={9}>
-          <CardContent>
-            <Typography variant="h4">{name}</Typography>
-            <Divider />
-            <Typography variant="h6">{price}</Typography>
-            <Divider />
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent:'center' }}>
-              <IconButton onClick={handleIncrement}>
-                <AddCircleOutline/>
-              </IconButton>
-              <Typography variant="h6" sx={{ mx: 1, textAlign:'center' }} >Quantity: {quantity}</Typography>
-              <IconButton onClick={handleDecrement}>
-                <RemoveCircleOutline />
-              </IconButton>
-            </Box>
-          </CardContent>
-        </Grid>
-        <Grid item xs={2}>
-          <CardActions>
-            <IconButton onClick={handleRemoveToCart}>
-              <CloseRoundedIcon />
+      <Box sx={{ flexGrow: 1, mx: 2 }}>
+        <CardContent>
+          <Typography variant="h5">{name}</Typography>
+          <Divider sx={{ my: 1 }} />
+          <Typography variant="h6" sx={{ fontWeight: 'bold' }}>{price} USD</Typography>
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', my: 2 }}>
+            <IconButton onClick={handleDecrement} disabled={quantity === 1}>
+              <RemoveCircleOutline />
             </IconButton>
-          </CardActions>
-        </Grid>
-      </Grid>
+            <Typography variant="body1" sx={{ mx: 1 }}>{quantity}</Typography>
+            <IconButton onClick={handleIncrement}>
+              <AddCircleOutline />
+            </IconButton>
+          </Box>
+        </CardContent>
+      </Box>
+      <CardActions>
+        <IconButton onClick={handleRemoveToCart}>
+          <CloseRoundedIcon />
+        </IconButton>
+      </CardActions>
     </Card>
   );
 };

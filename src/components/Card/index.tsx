@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { addToCart } from '../../redux/slices/cart.slice';
 import { setItem } from '../../utils/localStorage';
+import { UseNotification } from '../../context/notification.context';
 
 
 type CardProps = {
@@ -16,6 +17,7 @@ type CardProps = {
 
 export const CardComponent: React.FC<CardProps> = ({image,name,description,price,id}) => {
     let navigate = useNavigate();
+    const {getSuccess} = UseNotification()
     const dispatch = useAppDispatch();
     const handleAddToCart = () => {
         dispatch(addToCart({
@@ -25,6 +27,7 @@ export const CardComponent: React.FC<CardProps> = ({image,name,description,price
             price,
             quantity:1
         }))
+        getSuccess('Producto agregado al carrito')
     }
     const[disabled,setDisabled] = React.useState(false);
     const itemExits = useAppSelector((state) => state.cartReducer);
